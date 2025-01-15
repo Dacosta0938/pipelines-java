@@ -1,0 +1,65 @@
+stages:
+
+- stage: Requirements_Management
+
+  jobs:
+
+  - job: Gather_Requirements
+
+    steps:
+
+    - task: CreateWorkItems
+
+      inputs:
+
+        workItemType: 'Requirement'
+
+        description: 'Create new requirements work items'
+
+
+
+- stage: Design
+
+  jobs:
+
+  - job: Design_Review
+
+    steps:
+
+    - task: CodeReview
+
+      inputs:
+
+        reviewType: 'Design_Review'
+
+
+
+- stage: Implementation
+
+  jobs:
+
+  - job: Code_Development
+
+    steps:
+
+    - task: Build_Solution
+
+      inputs:
+
+        solutionFile: 'solution.sln'
+
+
+
+- stage: Testing
+
+  jobs:
+
+  - job: Execute_Tests
+
+    steps:
+
+    - task: Run_Automated_Tests
+
+      inputs:
+
+        testSuite: 'RegressionTests'
